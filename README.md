@@ -70,7 +70,21 @@ Full run: 1365 s wall-clock (`results/runtime.json`), 3 worker processes x 2 thr
 `src/photomesh/` (mesh, photon statistics, calibration) · `experiments/run_all.py` · `tests/` · `results/` (raw.csv, summary.csv, paired.json, table.md) · `figures/` · `docs/`
 
 ## Citation
-See `CITATION.cff`.
+
+If you use this code, please cite it (see also `CITATION.cff`):
+
+```bibtex
+@software{chenchupradeep2026photonicmesh,
+  author  = {Chenchupradeep, Degala},
+  title   = {photomesh: single- vs two-photon characterisation of imperfect photonic meshes},
+  year    = {2026},
+  version = {0.1.0},
+  url     = {https://github.com/pradeepdegalaroyal/photonic-mesh-characterisation-photon-budget},
+  license = {MIT}
+}
+```
+
+MIT license (`LICENSE`).
 
 ## License
 MIT
