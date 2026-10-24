@@ -1,0 +1,11 @@
+{
+ "paired_cases": 30,
+ "two_lt_single": 27,
+ "both_lt_single": 25,
+ "single_lt_naive": 27,
+ "two_lt_naive": 30,
+ "median_ratio_two_over_naive": 0.037715048357974464,
+ "median_ratio_single_over_naive": 0.08273182396301572,
+ "budget300_cases": 6,
+ "budget300_two_lt_single": 6
+}
