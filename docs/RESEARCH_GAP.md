@@ -12,6 +12,6 @@ Papers above show that scaling needs programmable meshes, but they do not tell a
 ## Hypothesis (falsifiable)
 At an equal photon-preparation budget per phase setting, maximum-likelihood characterisation from two-photon coincidence statistics yields a lower post-recompilation process infidelity than characterisation from single-photon intensities alone, for 4- and 6-mode rectangular meshes with Gaussian beamsplitter-angle errors (sigma 0.03-0.10 rad). It is falsified if the paired median infidelity of the two-photon strategy is not lower than single-photon in most paired cases.
 
-**Metric:** process infidelity 1 - |Tr(U†V)|²/n² of the recompiled mesh on the true (erroneous) device, mean ± std over seeds; secondary metric: RMSE of fitted angle errors.
+**Metric:** process infidelity 1 - |Tr(U†V)|²/n² of the recompiled mesh on the true (erroneous) device, mean ± std over seeds; secondary metric: root-mean-square error (RMSE) of fitted angle errors.
 
 **Scale:** exact simulation (statevector-free: permanent formulas for 2 photons), 4 and 6 modes, 3 seeds. No hardware claims.

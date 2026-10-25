@@ -9,14 +9,20 @@ Photonic quantum computing is moving to manufacturable, modular integrated platf
 
 ## Method
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#000000', 'secondaryColor': '#ffffff', 'tertiaryColor': '#ffffff', 'background': '#ffffff', 'noteBkgColor': '#ffffff', 'noteTextColor': '#000000', 'actorBkg': '#ffffff', 'actorBorder': '#000000', 'actorTextColor': '#000000', 'signalColor': '#000000', 'signalTextColor': '#000000', 'labelBoxBkgColor': '#ffffff', 'labelTextColor': '#000000', 'clusterBkg': '#ffffff', 'clusterBorder': '#000000'}}}%%
 flowchart LR
-  U[Target unitary] --> C[Ideal compile = naive baseline]
-  C --> P[Probe chip at 8 random phase settings, B events each]
-  P -->|single / two / both photons, multinomial shot noise| F[ML fit of beamsplitter angle errors]
-  F --> R[Recompile phases on fitted model]
-  R --> E[Evaluate infidelity on true device]
-  O[Oracle: true errors known] --> R
+  U["Target unitary"] --> C["Ideal compile = naive baseline"]
+  C --> P["Probe chip at 8 random phase settings, B events each"]
+  P --> EL1["single / two / both photons, multinomial shot noise"]
+  EL1 --> F["ML fit of beamsplitter angle errors"]
+  F --> R["Recompile phases on fitted model"]
+  R --> E["Evaluate infidelity on true device"]
+  O["Oracle: true errors known"] --> R
+  classDef lbl fill:#ffffff,stroke:#ffffff,color:#000000,font-style:italic;
+  class EL1 lbl;
 ```
+
+*Diagram abbreviations: ML = maximum likelihood.*
 Rectangular mesh, errors d ~ N(0, sigma²) on each beamsplitter angle, exact permanent-based one- and two-photon probabilities, differentiable in PyTorch. No photon loss is modelled.
 
 ## Results
@@ -51,7 +57,7 @@ Paired statistics over the 30 (mode count, seed, condition) cases (`results/pair
 Simulation only; no photon loss, partial distinguishability, detector inefficiency or phase-setting errors (phases assumed exact); only beamsplitter angles are fitted; 4 and 6 modes, 3 seeds, 8 phase settings; Haar-random targets; the optimiser budget limits the oracle. Photon-number-resolving detection is assumed.
 
 ## Future work
-Add loss and imperfect HOM visibility to the fit; extend to larger meshes with the two-photon likelihood restricted to neighbouring input pairs; choose phase settings adaptively (experiment design); test on measured data from an integrated chip, where thermal crosstalk must also be fitted.
+Add loss and imperfect Hong-Ou-Mandel (HOM) visibility to the fit; extend to larger meshes with the two-photon likelihood restricted to neighbouring input pairs; choose phase settings adaptively (experiment design); test on measured data from an integrated chip, where thermal crosstalk must also be fitted.
 
 ## Related work by the author
 - [qfc-codesign-heterogeneous-quantum-links](https://github.com/pradeepdegalaroyal/qfc-codesign-heterogeneous-quantum-links): differentiable PyTorch link model for noise-aware photonic co-design.
@@ -64,7 +70,7 @@ pytest -q
 python experiments/run_all.py --quick   # smoke run, ~35 s
 python experiments/run_all.py           # full run
 ```
-Full run: 1365 s wall-clock (`results/runtime.json`), 3 worker processes x 2 threads, on Windows 11, Python 3.11.9, CPU only (16 threads machine, shared with other work). Note this exceeds a 15-minute budget I had aimed for.
+Full run: 1365 s wall-clock (`results/runtime.json`), 3 worker processes x 2 threads, on Windows 11, Python 3.11.9, central processing unit (CPU) only (16 threads machine, shared with other work). Note this exceeds a 15-minute budget I had aimed for.
 
 ## Structure
 `src/photomesh/` (mesh, photon statistics, calibration) · `experiments/run_all.py` · `tests/` · `results/` (raw.csv, summary.csv, paired.json, table.md) · `figures/` · `docs/`
@@ -84,7 +90,7 @@ If you use this code, please cite it (see also `CITATION.cff`):
 }
 ```
 
-MIT license (`LICENSE`).
+Massachusetts Institute of Technology (MIT) license (`LICENSE`).
 
 ## License
 MIT
